@@ -1,1 +1,415 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise For You 💗</title><style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Pacifico&display=swap');
 
+:root {
+  --pink: #ff8fab;
+  --light: #fff0f5;
+  --dark: #704458;
+  --cream: #fffaf0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--dark);
+  background: var(--light);
+  text-align: center;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 18px;
+  background:
+    radial-gradient(circle at 10% 20%, #ffffff 0 3px, transparent 4px),
+    radial-gradient(circle at 90% 30%, #ffffff 0 4px, transparent 5px),
+    linear-gradient(145deg, #fff0f5, #ffe0eb, #fff5e8);
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  padding: 32px 22px;
+  background: rgba(255,255,255,.78);
+  border: 2px solid white;
+  border-radius: 30px;
+  box-shadow: 0 15px 45px #d98da333;
+  animation: appear 1s ease;
+}
+
+h1, h2 {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(32px, 8vw, 44px);
+  line-height: 1.4;
+  margin: 8px 0;
+  color: #e76d94;
+}
+
+h2 {
+  font-size: 30px;
+  color: #e76d94;
+}
+
+p {
+  line-height: 1.8;
+}
+
+.subtitle {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b56d8a;
+}
+
+.gift {
+  margin: 22px auto;
+  width: 170px;
+  height: 170px;
+  display: grid;
+  place-items: center;
+  font-size: 105px;
+  cursor: pointer;
+  animation: bounce 1.8s infinite;
+  filter: drop-shadow(0 10px 8px #e76d9433);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gift:active {
+  transform: scale(.9);
+}
+
+.btn {
+  padding: 14px 23px;
+  margin: 8px 3px;
+  background: #ff8fab;
+  color: white;
+  font-weight: 700;
+  border-radius: 30px;
+  box-shadow: 0 5px 0 #e77698;
+  transition: transform .2s;
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.secondary {
+  background: white;
+  color: #d96088;
+  box-shadow: 0 4px 0 #f1ccda;
+}
+
+.hint {
+  font-size: 13px;
+  opacity: .7;
+}
+
+section {
+  padding: 65px 18px;
+}
+
+.memory {
+  background: var(--cream);
+}
+
+.letter-section {
+  background: #ffe1eb;
+}
+
+.letter {
+  max-width: 480px;
+  margin: 20px auto;
+  padding: 28px 24px;
+  text-align: left;
+  white-space: pre-line;
+  background: #fffdf9;
+  border: 1px solid #f6d3df;
+  border-radius: 6px 24px 24px 24px;
+  box-shadow: 0 10px 30px #b75d7918;
+  line-height: 1.9;
+  display: none;
+}
+
+.letter.show {
+  display: block;
+  animation: appear .7s ease;
+}
+
+.photo-grid {
+  max-width: 500px;
+  margin: 25px auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.photo {
+  background: white;
+  padding: 9px 9px 18px;
+  border-radius: 4px;
+  box-shadow: 0 6px 18px #a7777720;
+  transform: rotate(-2deg);
+}
+
+.photo:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.photo img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #ffe1eb;
+}
+
+.caption {
+  font-family: 'Pacifico', cursive;
+  margin: 12px 0 0;
+  font-size: 14px;
+}
+
+.cake {
+  font-size: 100px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+footer {
+  padding: 28px 15px;
+  font-size: 13px;
+  background: #fffafc;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  z-index: 10;
+  animation: floatUp 5s linear forwards;
+}
+
+#surprise {
+  display: none;
+}
+
+#surprise.open {
+  display: block;
+  animation: appear .8s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style></head><body><div class="hero">
+  <div class="card">
+    <div class="subtitle">✧ a tiny website made just for you ✧</div><h1>Happy Birthday! 💗</h1>
+
+<p>Someone has a little surprise waiting for them...</p>
+
+<div class="gift" id="gift" role="button" tabindex="0"
+     aria-label="Open your birthday gift"
+     onclick="openGift()">🎁</div>
+
+<p class="hint" id="hint">psst... tap the gift box!</p>
+
+<div id="surprise">
+  <h2>IT'S YOUR DAY!! 🎉</h2>
+  <p>
+    Happy birthday to one of my favourite humans ever!
+    You deserve all the happiness in the universe. 🧸
+  </p>
+  <button class="btn" onclick="goToMemories()">
+    Explore your surprise ↓
+  </button>
+</div>
+
+  </div>
+</div><section class="memory" id="memories">
+  <div class="subtitle">little moments, big memories</div>
+  <h2>Our Little Scrapbook 📸</h2>
+  <p>A few little spaces for some of our favourite memories.</p>  <div class="photo-grid">
+    <div class="photo">
+      <img src="https://placehold.co/400x400/ffe1eb/ba6485?text=Photo+1"
+           alt="Memory one">
+      <p class="caption">Our silly moments ♡</p>
+    </div><div class="photo">
+  <img src="https://placehold.co/400x400/fff0d9/ba6485?text=Photo+2"
+       alt="Memory two">
+  <p class="caption">Core memory unlocked ✨</p>
+</div>
+
+<div class="photo">
+  <img src="https://placehold.co/400x400/e9e2ff/8065a8?text=Photo+3"
+       alt="Memory three">
+  <p class="caption">Certified clowns 🎀</p>
+</div>
+
+<div class="photo">
+  <img src="https://placehold.co/400x400/dcf5e7/548d70?text=Photo+4"
+       alt="Memory four">
+  <p class="caption">Forever iconic 💗</p>
+</div>
+
+  </div>  <p class="hint">Replace these placeholder pictures with your own!</p>
+</section><section class="letter-section">
+  <div class="subtitle">something from my heart</div>
+  <h2>A Letter For You 💌</h2>
+  <p>There's something I wanted you to know...</p>  <button class="btn" onclick="revealLetter()" id="letterBtn">
+    Open your letter 💌
+  </button>  <div class="letter" id="letter">Dear bestie, 💗HAPPY BIRTHDAYYYYY!!
+
+I hope today reminds you of just how special you are.
+Thank you for being part of my life and making it
+a little brighter just by being yourself.
+
+I hope this new chapter brings you happiness,
+wonderful memories, unexpected adventures,
+and so many reasons to smile.
+
+No matter where life takes us, I hope you always
+remember that you deserve good things.
+
+Thank you for being YOU.
+
+With lots of love,
+Your favourite menace ♡</div>
+
+</section><section>
+  <div class="subtitle">one last birthday wish</div>
+  <h2>Make a Wish! 🎂</h2>  <p>Tap the cake to blow out the candles!</p>  <div class="cake" id="cake" role="button" tabindex="0"
+       aria-label="Blow out the birthday candles"
+       onclick="blowCandles()">🎂</div>  <p id="cakeMessage">Close your eyes and make a wish. ✨</p><button class="btn" onclick="celebrate()">MORE CONFETTI!! 🎉</button>
+
+</section><footer>
+  made with ♡, love, and questionable amounts of affection
+  <br><br>
+  <span id="footerText">for a very special human ✧</span>
+</footer><script>
+let giftOpened = false;
+let candlesOut = false;
+
+function openGift() {
+  if (giftOpened) return;
+  giftOpened = true;
+
+  document.getElementById('gift').textContent = '💝';
+  document.getElementById('hint').textContent = 'SURPRISEEEE!!';
+  document.getElementById('surprise').classList.add('open');
+
+  celebrate();
+}
+
+function goToMemories() {
+  document.getElementById('memories').scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
+function revealLetter() {
+  const letter = document.getElementById('letter');
+  const button = document.getElementById('letterBtn');
+
+  letter.classList.toggle('show');
+
+  button.textContent = letter.classList.contains('show')
+    ? 'Close your letter 💗'
+    : 'Open your letter 💌';
+}
+
+function blowCandles() {
+  const cake = document.getElementById('cake');
+  const message = document.getElementById('cakeMessage');
+
+  candlesOut = !candlesOut;
+
+  cake.textContent = candlesOut ? '🍰' : '🎂';
+
+  message.textContent = candlesOut
+    ? 'WISH GRANTED!! MAY YOUR DREAMS COME TRUE! ✨💗'
+    : 'Close your eyes and make a wish. ✨';
+
+  if (candlesOut) celebrate();
+}
+
+function celebrate() {
+  const emojis = ['💗', '💕', '✨', '🎉', '💖', '🌸', '🎀'];
+
+  for (let i = 0; i < 32; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+
+      heart.className = 'heart';
+      heart.textContent = emojis[
+        Math.floor(Math.random() * emojis.length)
+      ];
+
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (16 + Math.random() * 22) + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6500);
+    }, i * 65);
+  }
+}
+
+document.getElementById('gift').addEventListener('keydown', event => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    openGift();
+  }
+});
+
+document.getElementById('cake').addEventListener('keydown', event => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    blowCandles();
+  }
+});
+</script></body>
+</html>
